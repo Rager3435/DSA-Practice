@@ -1,0 +1,35 @@
+class Solution {
+public:
+    Node* deleteAllOccurOfX(Node* head, int x) {
+
+        Node* temp = head;
+
+        while (temp != NULL) {
+
+            if (temp->data == x) {
+
+                Node* nextNode = temp->next;
+                Node* prevNode = temp->prev;
+
+                if (temp == head) {
+                    head = nextNode;
+                }
+
+                if (prevNode)
+                    prevNode->next = nextNode;
+
+                if (nextNode)
+                    nextNode->prev = prevNode;
+
+                delete temp;
+
+                temp = nextNode;
+            }
+            else {
+                temp = temp->next;
+            }
+        }
+
+        return head;
+    }
+};
