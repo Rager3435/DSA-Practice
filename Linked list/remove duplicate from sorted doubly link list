@@ -1,0 +1,29 @@
+class Solution {
+public:
+    Node* removeDuplicates(Node* head) {
+
+        if (head == NULL || head->next == NULL)
+            return head;
+
+        Node* temp = head;
+
+        while (temp != NULL && temp->next != NULL) {
+
+            if (temp->data == temp->next->data) {
+
+                Node* duplicate = temp->next;
+
+                temp->next = duplicate->next;
+
+                if (duplicate->next != NULL) {
+                    duplicate->next->prev = temp;
+                }
+            }
+            else {
+                temp = temp->next;
+            }
+        }
+
+        return head;
+    }
+};
